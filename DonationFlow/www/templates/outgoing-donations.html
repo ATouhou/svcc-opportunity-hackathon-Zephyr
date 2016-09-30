@@ -1,0 +1,70 @@
+<ion-modal-view>
+
+  <ion-header-bar>
+    <a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="closeOutgoingDonations()" style="font-weight: 500;" >Back</a>
+  </ion-header-bar>
+
+
+  <ion-content>
+   <div class="content padding">
+    <h3   style="text-align:center; color: #000080;">Outgoing Donations</h3>
+  </div>
+  
+ <!-- development  staff -->
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Development staff</span>
+    <input type="text" placeholder="Development staff" ng-model="data.devstaff.value">
+  </label>
+
+  <!-- client name -->
+
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Client Name</span>
+    <input type="text" placeholder="Client Name" ng-change="search(data.client)" ng-model="data.client.value">
+  </label>
+
+  <div class="list">
+    <li class="clientName item " ng-repeat="client in data.client.list" ng-click = "globalSelectedFunction('{{client}}', data.client)">{{client}}</li>
+  </div>
+
+
+
+  <!-- client Representative -->
+
+  <label class="search_nav item item-input item-floating-label" >
+    <span class="input-label">Client Representative</span>
+    <input type="text" placeholder="Client Representative" ng-change="search(data.clientReps)" ng-model="data.clientReps.value">
+  </label>
+  <div class="list">
+    <li class="clientNameReps item" ng-repeat="client in data.clientReps.list" ng-click = "globalSelectedFunction('{{client}}', data.clientReps)">{{client}}
+    </li>
+  </div>
+
+  <ion-list>
+    <ion-item ng-repeat="item in data.itemList" class="fixitem" style="padding-right: 10px;">
+
+      <button  ng-click="removeItem(item)" class="button"><i class="ion-ios-close-outline" ></i></button>
+
+      {{item.name}}
+      <input style="width: 40px;display:inline;float:right;" type="number" ng-model="item.value" name=""> 
+    </ion-item>
+  </ion-list>
+
+
+  <label class="item item-input item-floating-label">
+    <input type="search" placeholder="Item categories" ng-focus="search(data.categories)" ng-change="search(data.categories)" ng-model="data.categories.value" >
+  </label>
+
+  <div class="list">
+    <li class="item" ng-repeat="category in data.categories.list" ng-click = "selectedCategory('{{category}}')">{{category}}</li>
+  </div>
+</div>
+<div class="padding" style="
+padding: 40px 20px;">
+<button type="submit" ng-click="submitOutgoing()" class="button button-block button-positive"> Save</button>
+</div>
+<img style="width: 60%; text-align:center;display: block; margin: 0 auto;" src="img/logo.jpg">
+
+</ion-content>
+
+</ion-modal-view> 

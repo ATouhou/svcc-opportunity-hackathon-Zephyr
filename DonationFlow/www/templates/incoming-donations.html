@@ -1,0 +1,79 @@
+<ion-modal-view>
+
+<ion-header-bar>
+<a class="button icon-left ion-chevron-left button-clear button-dark" ng-click="closeIncomingDonations()" style="font-weight: 500;" >Back</a>
+
+</ion-header-bar>
+
+
+<ion-content>
+<div class="content padding">
+	<h1>Incoming Donations</h1>
+	<form name="incomingDonationsForm" ng-submit="incomingDonationsSubmit(incomingDonationsForm)" >
+		<div class="list">
+    	<label class="item item-input" ng-class="{'has-errors':incomingDonationsForm.donorName.$invalid , 'no-errors':incomingDonationsForm.donorName.$valid}">
+    		<span class="input-label">Date(*)</span>
+    		<input type="date" placeholder="Date(*)" ng-model="userData.date">
+    	</label>
+    	
+    	<label class="item item-input item-floating-label" ng-class="{'has-errors':incomingDonationsForm.donorName.$invalid , 'no-errors':incomingDonationsForm.donorName.$valid}">
+    		<span class="input-label">Donor Name(*)</span>
+    		<input type="text" name="donorName" ng-model="userData.donorName" required placeholder="Donor Name(*)"></input>
+    	</label> 
+
+    	<label class="item item-input item-floating-label">
+    		<span class="input-label">Address</span>
+    		<input type="text" name="address" ng-model="userData.address" required placeholder="Address"> </input>
+    	</label> 
+
+    	<label class="item item-input item-floating-label">
+    		<span class="input-label">Email</span>
+    		<input type="text" name="email" ng-model="userData.email" required placeholder="Email"> </input>
+    	</label> 
+
+    	<label class="item item-input item-floating-label">
+    		<span class="input-label">Phone No</span>
+    		<input type="text" name="phno" ng-model="userData.phone" required placeholder="Phone No"> </input>
+    	</label> 
+
+    	<label class="item item-input item-floating-label" ng-class="{'has-errors':incomingDonationsForm.staffName.$invalid , 'no-errors':incomingDonationsForm.staffName.$valid}">
+    		<span class="input-label">Staff Name(*)</span>
+    		<input type="text" name="staffName" ng-model="userData.staffName" required placeholder="Staff Name(*)"></input>
+    	</label> 
+
+    	<label class="item item-input item-floating-label" ng-class="{'has-errors':incomingDonationsForm.programName.$invalid, 'no-errors':incomingDonationsForm.programName.$valid} ">
+    		<span class="input-label">Program(*)</span>
+    		<input type="text" name="programName" ng-model="userData.programName" required placeholder="Program Name(*)"> </input>
+    	</label> 
+       <div>
+    <li class="item" ng-repeat="item in data.itemList"><button ng-if="$index != inputs.length - 1" ng-click="removeInput($index)">
+      	<i class="ion-ios-close-outline" ></i>
+      </button> &nbsp; {{item.name}}  &nbsp;<input style="width: 40px;display:inline;float:right;" type="number" placeholder="Quantity" ng-model="item.value">
+    </input>&nbsp; <input type="number" placeholder="Estimated Cost" ng-model="item.estimatedCost"></input>
+    
+    </li>
+  </div>
+  <label class="item item-input item-floating-label">
+    <input type="search" placeholder="Item" ng-change="search(data.categories)" ng-model="data.categories.value">
+  </label>
+  <div>  
+  	<div class="list">
+    	<li class="item" ng-repeat="category in data.categories.list" ng-click = "selectedCategory('{{category}}')">{{category}}</li>
+  	</div>
+  </div>
+</div>
+
+  </div>
+  <div layout="row" layout-align="center center" class="padding">
+  <button class="button-block button-positive button" type="submit" ng-click="saveIncoming()">
+  	Save
+  </button>
+ 
+</div>
+</div>
+</form>
+
+</div>
+<img style="width: 60%; text-align:center;display: block; margin: 0 auto;" src="img/logo.jpg">
+</ion-content>
+</ion-modal-view>
